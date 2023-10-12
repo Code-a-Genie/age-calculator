@@ -15,6 +15,24 @@ body{
     border-bottom-right-radius: 60px;
 }
 
+.input-name{
+    font-family:'Poppins', sans-serif;
+}
+
+.result-numbers{
+    font-weight:700;
+    font-size: 35px;
+    color:#864CFF;
+
+}
+
+.result-suffix{
+    font-weight:bolder;
+    font-family:'Poppins', sans-serif;
+    font-size: 35px;
+    
+}
+
 .input-container{
     display:flex;
     gap: 2rem;
@@ -48,7 +66,7 @@ body{
 }
 
 .result-field{
-    margin-top:20%;
+    margin-top:3%;
 }
 
 .inputs{

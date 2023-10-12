@@ -15,6 +15,33 @@ const validDayError = document.querySelector('.valid-day-error');
 
 
 
+
+
+// day validation
+function validateDay(day){
+    let month = monthInput.value;
+    if (day === null || day === undefined || day === '') {
+        for (const error of requiredErrors) {
+            error.style.display = "block";
+        }
+        return false;
+    }
+
+    if(day < 1 || day > 31){
+       validDayError.style.display = "block"
+       return false;
+    }
+    if((month === 4 || month === 6 || month === 9 || month === 11) && day >30){
+        validDayError.textContent = "Enter a valid day"  
+
+    }
+    if(monthInput === 2 && dayInput > 28){
+        validDayError.textContent = "Enter a valid day" 
+        return false;
+    }
+    return true;
+}
+
 // month validation
 function validateMonth(month) {
     if (month === null || month === undefined || month === '') {
@@ -32,36 +59,11 @@ function validateMonth(month) {
     return true;
 }
 
-// day validation
-function validateDay(day){
-    let month = monthInput.value;
-    if (day === null || day === undefined || day === '') {
-        for (const error of requiredErrors) {
-            error.style.display = "block";
-        }
-        return false;
-    }
-
-    else if(day < 1 || day > 31){
-       validDayError.style.display = "block"
-       return false;
-    }
-    else if((month === 4 || month === 6 || month === 9 || month === 11) && day >30){
-        validDayError.style.display = "block"  
-        return false;
-    }
-    else if(monthInput===2 && dayInput > 28){
-        validDayError.style.display = "block" 
-        return false;
-    }
-    return true;
-}
-
 //year validation
 
 function validateYear(year){
     let currentDate = new Date()
-    let currentYear = currentDate.getFullYear();
+    const currentYear = currentDate.getFullYear();
     if (year === null || year === undefined || year === '') {
         for (const error of requiredErrors) {
             error.style.display = "block";
@@ -80,38 +82,41 @@ function calculateAge(e){
     e.preventDefault();
 
    
-    let month = monthInput.value;
-    let day = dayInput.value;
-    let year = yearInput.value;
+    const month = parseInt(monthInput.value);
+    let day = parseInt(dayInput.value);
+    let year = parseInt(yearInput.value);
 
     validateDay(day)
     validateMonth(month)
     validateYear(year)
 
-    if (!validateDay(day) || !validateMonth(month) || !validateYear(year)) {
+    if (!validateDay(day, month) || !validateMonth(month) || !validateYear(year)) {
         // Validation failed, do not proceed with calculations
         return;
     }
 
 
-    let currentDate = new Date()
-    let currentYear = currentDate.getFullYear();
-    let currentMonth = currentDate.getMonth() + 1;
-    let currentDay = currentDate.getDate()
-
-    let yearAge = currentYear - year
-
-    let monthAge = currentMonth - month;
-
-    let dayAge = currentDay - day;
-
-    yearsResult.textContent = yearAge;
-
-    monthsResult.textContent = monthAge;
-
-    daysResult.textContent = dayAge;
+    
 
 
+        const birthday = new Date (year, month -1, day)
+        const currentDate = new Date()
+
+        let ageDifference = currentDate-birthday
+
+        let yearAge = Math.floor(ageDifference / 31556952000); // milliseconds per year
+        ageDifference -= yearAge * 31556952000;
+
+       const monthAge = Math.floor(ageDifference / 2629746000); // milliseconds per month
+       ageDifference -= monthAge * 2629746000;
+
+       const dayAge = Math.floor(ageDifference / 86400000); // milliseconds per day
+
+       yearsResult.textContent = yearAge;
+
+      monthsResult.textContent = monthAge;
+
+      daysResult.textContent = dayAge;
     
 
 }

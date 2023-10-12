@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
     <title>Age calculator app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
   </head>
   <body>
     <!-- Day
@@ -24,7 +27,7 @@
       <form class="input-container">
         <!-- day input -->
         <div class="day-input">
-          <p>DAY</p>
+          <p class="input-name"><b>DAY</b></p>
           <p class="required-error">This field is required</p>
           <input type="number" placeholder="DD" name="day" class="inputs" id="day-input" />
           <p class="valid-day-error">Please enter a valid day</p>
@@ -32,7 +35,7 @@
 
         <!-- month input -->
         <div class="month-input">
-          <p>MONTH</p>
+          <p class="input-name"><b>MONTH</b></p>
           <p class="required-error">This field is required</p>
           <input type="number" placeholder="MM" name="month" class="inputs" id="month-input" />
           <p class="valid-month-error">Please enter a valid month</p>
@@ -40,7 +43,7 @@
 
         <!-- year input -->
         <div class="year-input">
-          <p>YEAR</p>
+          <p class="input-name"><b>YEAR</b></p>
           <p class="required-error">This field is required</p>
           <input type="number" placeholder="YYYY" name="year" class="inputs" id="year-input"/>
           <p class="valid-year-error">Year must be in the past</p>
@@ -57,13 +60,13 @@
  
      <!-- Result field -->
       <div class="result-field">
-        <p><span class="result-numbers" id="years">--</span> years</p>
-        <p><span class="result-numbers" id="months">--</span> months</p>
-        <p><span class="result-numbers" id="days">--</span> days</p>
+        <p class="result-suffix"><span class="result-numbers" id="years"><i>--</i></span> years</p>
+        <p class="result-suffix"><span class="result-numbers" id="months"><i>--</i></span> months</p>
+        <p class="result-suffix"><span class="result-numbers" id="days"><i>--</i></span> days</p>
       </div>
     
     </div>
-<img class="colorpick" src="./design/desktop-completed.jpg">
+
     <!-- <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
